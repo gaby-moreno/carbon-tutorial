@@ -1,11 +1,21 @@
 import React from 'react';
-import {
-  Tile,
-  SelectableTile,
-} from 'carbon-components-react/lib/components/Tile';
+import { SelectableTile } from 'carbon-components-react';
+
+const props = {
+  selected: false,
+  handleClick: () => {},
+};
 
 const ContentTile = () => {
-  return <div>tile should go here</div>;
+  const selectableProps = props;
+
+  return (
+    <div role="group" aria-label="selectable tiles">
+      <SelectableTile id="tile-1" name="tiles" {...selectableProps}>
+        Multi-select Tile
+      </SelectableTile>
+    </div>
+  );
 };
 
 export { ContentTile };

@@ -2,9 +2,11 @@ import React from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  Checkbox,
   Tabs,
   Tab,
   DataTable,
+  Dropdown,
   TableContainer,
   Table,
   TableHead,
@@ -15,9 +17,12 @@ import {
   TableExpandRow,
   TableCell,
   TableExpandedRow,
+  TextInput,
+  SelectableTile,
 } from 'carbon-components-react';
 import { ContentTile } from '../../components/Content';
 import Globe32 from '@carbon/icons-react/lib/globe/32';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 const props = {
   tabs: {
@@ -29,6 +34,31 @@ const props = {
     href: '#',
     role: 'presentation',
     tabIndex: 0,
+  },
+  selectableTile: {
+    selected: false,
+    handleClick: () => {},
+  },
+  dropdown: {
+    label: '1.14 (latest)',
+    type: 'inline',
+  },
+  templatesDropdown: {
+    label: 'Trial Cluster',
+    titleText: 'Templates',
+  },
+  resourcegroupDropdown: {
+    label: 'Default',
+    titleText: 'Resource Group',
+  },
+  clusterNameTextInput: {
+    labelText: 'Cluster name',
+    placeholder: 'dev-dal10',
+    defaultValue: 'dev dal10',
+  },
+  tagsTextInput: {
+    labelText: 'Tags',
+    placeholder: 'dev, env: dev',
   },
 };
 
@@ -95,29 +125,78 @@ const CreatePage = () => {
               <div className="bx--grid bx--grid--full-width bx--grid--no-gutter">
                 <div className="bx--row create-page__tab-content">
                   <div className="bx--col">
-                    <div className="bx--row create-page__templates">
-                      <div className="bx--col-lg-4">Template</div>
+                    <div className="bx--row create-page__section create-page__templates">
+                      <div className="bx--col-md-4 bx--col-lg-4">
+                        <Dropdown
+                          {...props.templatesDropdown}
+                          items={
+                            'Trial Cluster, Single Node, High Availability'
+                          }
+                          onChange={console.log()}
+                        />
+                      </div>
                     </div>
-                    <div className="bx--row create-page__orchestration">
+                    <div className="bx--row create-page__section create-page__orchestration">
                       <div className="bx--col-lg-8">
                         <h2 className="create-page__subheading">
                           Orchestration Service
                         </h2>
+                        {/* <div role="group" aria-label="selectable tiles" className="bx--grid bx--grid--full-width bx--grid--no-gutter">
+                          <div className="bx--row">
+                            <div className="bx--col-md-2">
+                              <SelectableTile id="tile-1" name="tiles" {...props.selectableTile} className="create-page__dropdown-tile">
+                                <img
+                                  className="create-page__tile-icon"
+                                  src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                                  alt="Kubernetes illustration"
+                                />
+                                <h3 className="create-page__tile-heading">Kubernetes</h3>
+                                <Dropdown
+                                  className="create-page__tile-dropdown-inline"
+                                  {...props.dropdown}
+                                  items={"1.14", "1.15", "1.16"}
+                                />
+                              </SelectableTile>
+                            </div>
+                          </div>
+                        </div> */}
                       </div>
                     </div>
-                    <div className="bx--row create-page__infrastructure">
+                    <div className="bx--row create-page__section create-page__infrastructure">
                       <div className="bx--col-lg-12">
                         <h2 className="create-page__subheading">
                           Infrastructure
                         </h2>
                         <p className="create-page__helper-text">
-                          Choose your environement, this will affect the
+                          Choose your environment, this will affect the
                           subsequent cluster configuration choices. Is location
                           more important for you?
                         </p>
                       </div>
                     </div>
-                    <div className="bx--row create-page__location">
+                    <div className="bx--row create-page__section create-page__metadata">
+                      <div className="bx--col-md-4 bx--col-lg-8">
+                        <h2 className="create-page__subheading">Metadata</h2>
+                        <p className="create-page__helper-text">
+                          Information about your cluster.
+                        </p>
+                        <TextInput
+                          type="text"
+                          {...props.clusterNameTextInput}
+                          className="create-page__input"
+                        />
+                        <Dropdown
+                          {...props.resourcegroupDropdown}
+                          items={'Default'}
+                          onChange={console.log()}
+                          className="create-page__input"
+                        />
+
+                        <TextInput type="text" {...props.tagsTextInput} />
+                      </div>
+                    </div>{' '}
+                    {/* end create-page__metadata */}
+                    <div className="bx--row create-page__section create-page__location">
                       <div className="bx--col-lg-12">
                         <h2 className="create-page__subheading">Location</h2>
                         <p className="create-page__helper-text">
@@ -126,12 +205,8 @@ const CreatePage = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="bx--row create-page__metadata">
-                      <div className="bx--col-lg-8">
-                        <h2 className="create-page__subheading">Metadata</h2>
-                      </div>
-                    </div>
-                    <div className="bx--row create-page__workers">
+                    {/* end create-page__location */}
+                    <div className="bx--row create-page__section create-page__workers">
                       <div className="bx--col-lg-15">
                         <h2 className="create-page__subheading">Workers</h2>
                         <p className="create-page__helper-text">
@@ -139,8 +214,9 @@ const CreatePage = () => {
                           subsequent cluster configuration choices.
                         </p>
                       </div>
-                    </div>
-                    <div className="bx--row create-page__addons">
+                    </div>{' '}
+                    {/* end create-page__workers */}
+                    <div className="bx--row create-page__section create-page__addons">
                       <div className="bx--col-lg-12">
                         <h2 className="create-page__subheading">Addons</h2>
                         <p className="create-page__helper-text">
@@ -194,7 +270,7 @@ const CreatePage = () => {
                         />
                       </div>
                     </div>
-                    <div className="bx--row create-page__integrations">
+                    <div className="bx--row create-page__section create-page__integrations">
                       <div className="bx--col-lg-16">
                         <h2 className="create-page__subheading">
                           Integrations
@@ -203,6 +279,7 @@ const CreatePage = () => {
                           Choose your integrations, this will not affect the
                           subsequent cluster configuration choices.
                         </p>
+                        <ContentTile />
                       </div>
                     </div>
                   </div>
@@ -211,7 +288,7 @@ const CreatePage = () => {
             </Tab>
             <Tab {...props.tab} label="About">
               <div className="bx--grid bx--grid--no-gutter bx--grid--full-width">
-                <div className="bx--row create-page__tab-content">
+                <div className="bx--row create-page__section create-page__tab-content">
                   <div className="bx--col-lg-16">
                     All about Kubernetes Service.
                   </div>

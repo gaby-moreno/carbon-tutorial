@@ -40,8 +40,11 @@
   padding-bottom: $layout-03;
 }
 
-.create-page__tab-content .bx--row {
-  padding-bottom: $spacing-07;
+// .create-page__tab-content .bx--row {
+//   padding-bottom: $spacing-07;
+// }
+.create-page__section {
+  margin-bottom: $layout-05;
 }
 
 .create-page__subheading {
@@ -51,6 +54,28 @@
 .create-page__helper-text {
   @include carbon--type-style('label-01');
   margin-top: $spacing-02;
-  margin-bottom: $spacing-07;
+  margin-bottom: $spacing-06;
   width: 50%;
+}
+
+.create-page__section .create-page__input {
+  margin-bottom: $spacing-06;
+}
+
+.create-page__tile-icon {
+  height: 24px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.create-page__tile-heading {
+  position: absolute;
+  top: $spacing-05;
+  left: $spacing-09;
+  @include carbon--type-style('productive-heading-01');
+}
+
+.create-page__tile-dropdown-inline {
+  position: relative;
+  bottom: -$spacing-05;
 }
