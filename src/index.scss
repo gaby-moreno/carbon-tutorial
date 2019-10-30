@@ -7,6 +7,10 @@ $feature-flags: (
 $css--font-face: true;
 $css--plex: true;
 
+@import 'carbon-components/scss/globals/scss/theme';
+$carbon--theme: $carbon--theme--g10;
+@include carbon--theme();
+
 // Global styles
 @import 'carbon-components/scss/globals/scss/css--font-face';
 @import 'carbon-components/scss/globals/grid/grid';

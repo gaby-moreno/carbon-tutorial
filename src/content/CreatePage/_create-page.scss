@@ -1,0 +1,56 @@
+@import './mixins.scss';
+@import './overrides.scss';
+
+.create-page__banner {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05 * 4;
+
+  background-color: $ui-02;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -$spacing-05;
+    top: 0;
+    right: -$spacing-05;
+    bottom: 0;
+    background: $ui-02;
+    z-index: -1;
+  }
+}
+
+.create-page__heading {
+  margin-top: $spacing-05;
+  @include carbon--type-style('productive-heading-05');
+}
+
+.create-page__illo {
+  position: absolute;
+  right: $spacing-07;
+  top: $spacing-07;
+}
+
+.create-page__r2 {
+  margin-top: rem(-40px);
+}
+
+.create-page__tab-content {
+  padding-top: $layout-03;
+  padding-bottom: $layout-03;
+}
+
+.create-page__tab-content .bx--row {
+  padding-bottom: $spacing-07;
+}
+
+.create-page__subheading {
+  @include carbon--type-style('productive-heading-03');
+}
+
+.create-page__helper-text {
+  @include carbon--type-style('label-01');
+  margin-top: $spacing-02;
+  margin-bottom: $spacing-07;
+  width: 50%;
+}
