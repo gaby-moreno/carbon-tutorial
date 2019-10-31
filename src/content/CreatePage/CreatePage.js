@@ -141,25 +141,6 @@ const CreatePage = () => {
                         <h2 className="create-page__subheading">
                           Orchestration Service
                         </h2>
-                        {/* <div role="group" aria-label="selectable tiles" className="bx--grid bx--grid--full-width bx--grid--no-gutter">
-                          <div className="bx--row">
-                            <div className="bx--col-md-2">
-                              <SelectableTile id="tile-1" name="tiles" {...props.selectableTile} className="create-page__dropdown-tile">
-                                <img
-                                  className="create-page__tile-icon"
-                                  src={`${process.env.PUBLIC_URL}/kubernetes.png`}
-                                  alt="Kubernetes illustration"
-                                />
-                                <h3 className="create-page__tile-heading">Kubernetes</h3>
-                                <Dropdown
-                                  className="create-page__tile-dropdown-inline"
-                                  {...props.dropdown}
-                                  items={"1.14", "1.15", "1.16"}
-                                />
-                              </SelectableTile>
-                            </div>
-                          </div>
-                        </div> */}
                       </div>
                     </div>
                     <div className="bx--row create-page__section create-page__infrastructure">
@@ -279,7 +260,41 @@ const CreatePage = () => {
                           Choose your integrations, this will not affect the
                           subsequent cluster configuration choices.
                         </p>
-                        <ContentTile />
+                        <div
+                          role="group"
+                          aria-label="selectable tiles"
+                          className="bx--row">
+                          <div className="bx--col-lg-4">
+                            <SelectableTile id="tile-1" name="tiles">
+                              <img
+                                src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                                alt="tbd"
+                              />
+                              <h3>SysDig</h3>
+                              <p>Third Party</p>
+                              <p>
+                                Some explanation about Sysdig and logging and
+                                monitoring things. Keep it short and sweet.
+                              </p>
+                              <p>Integration</p>
+                            </SelectableTile>
+                          </div>
+                          <div className="bx--col-lg-4">
+                            <SelectableTile id="tile-1" name="tiles">
+                              <img
+                                src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                                alt="tbd"
+                              />
+                              <h3>LogDNA</h3>
+                              <p>Third Party</p>
+                              <p>
+                                Some explanation about Sysdig and logging and
+                                monitoring things. Keep it short and sweet.
+                              </p>
+                              <p>Integration</p>
+                            </SelectableTile>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
