@@ -40,14 +40,12 @@
   padding-bottom: $layout-03;
 }
 
-// .create-page__tab-content .bx--row {
-//   padding-bottom: $spacing-07;
-// }
 .create-page__section {
   margin-bottom: $layout-05;
 }
 
 .create-page__subheading {
+  display: block;
   @include carbon--type-style('productive-heading-03');
 }
 

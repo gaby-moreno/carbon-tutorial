@@ -3,8 +3,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Checkbox,
-  Tabs,
-  Tab,
   DataTable,
   Dropdown,
   TableContainer,
@@ -18,6 +16,11 @@ import {
   TableCell,
   TableExpandedRow,
   TextInput,
+  Tabs,
+  Tab,
+  Tile,
+  TileGroup,
+  RadioTile,
   SelectableTile,
 } from 'carbon-components-react';
 import { ContentTile } from '../../components/Content';
@@ -125,176 +128,167 @@ const CreatePage = () => {
               <div className="bx--grid bx--grid--full-width bx--grid--no-gutter">
                 <div className="bx--row create-page__tab-content">
                   <div className="bx--col">
-                    <div className="bx--row create-page__section create-page__templates">
-                      <div className="bx--col-md-4 bx--col-lg-4">
-                        <Dropdown
-                          {...props.templatesDropdown}
-                          items={
-                            'Trial Cluster, Single Node, High Availability'
-                          }
-                          onChange={console.log()}
-                        />
-                      </div>
-                    </div>
-                    <div className="bx--row create-page__section create-page__orchestration">
-                      <div className="bx--col-lg-8">
-                        <h2 className="create-page__subheading">
-                          Orchestration Service
-                        </h2>
-                      </div>
-                    </div>
-                    <div className="bx--row create-page__section create-page__infrastructure">
-                      <div className="bx--col-lg-12">
-                        <h2 className="create-page__subheading">
-                          Infrastructure
-                        </h2>
-                        <p className="create-page__helper-text">
-                          Choose your environment, this will affect the
-                          subsequent cluster configuration choices. Is location
-                          more important for you?
-                        </p>
-                      </div>
-                    </div>
-                    <div className="bx--row create-page__section create-page__metadata">
-                      <div className="bx--col-md-4 bx--col-lg-8">
-                        <h2 className="create-page__subheading">Metadata</h2>
-                        <p className="create-page__helper-text">
-                          Information about your cluster.
-                        </p>
-                        <TextInput
-                          type="text"
-                          {...props.clusterNameTextInput}
-                          className="create-page__input"
-                        />
-                        <Dropdown
-                          {...props.resourcegroupDropdown}
-                          items={'Default'}
-                          onChange={console.log()}
-                          className="create-page__input"
-                        />
+                    <Dropdown
+                      {...props.templatesDropdown}
+                      items={'Trial Cluster, Single Node, High Availability'}
+                      onChange={console.log()}
+                    />
 
-                        <TextInput type="text" {...props.tagsTextInput} />
-                      </div>
-                    </div>{' '}
-                    {/* end create-page__metadata */}
-                    <div className="bx--row create-page__section create-page__location">
-                      <div className="bx--col-lg-12">
-                        <h2 className="create-page__subheading">Location</h2>
-                        <p className="create-page__helper-text">
-                          Choose your location, this will affect the subsequent
-                          cluster configuration choices.
-                        </p>
-                      </div>
-                    </div>
-                    {/* end create-page__location */}
-                    <div className="bx--row create-page__section create-page__workers">
-                      <div className="bx--col-lg-15">
-                        <h2 className="create-page__subheading">Workers</h2>
-                        <p className="create-page__helper-text">
-                          Choose your workers, this will not affect the
-                          subsequent cluster configuration choices.
-                        </p>
-                      </div>
-                    </div>{' '}
-                    {/* end create-page__workers */}
-                    <div className="bx--row create-page__section create-page__addons">
-                      <div className="bx--col-lg-12">
-                        <h2 className="create-page__subheading">Addons</h2>
-                        <p className="create-page__helper-text">
-                          Choose your addons, this will not affect the
-                          subsequent cluster configuration choices.
-                        </p>
-                        <DataTable
-                          className="create-page__addons-table"
-                          rows={rows}
-                          headers={headers}
-                          render={({
-                            rows,
-                            headers,
-                            getHeaderProps,
-                            getRowProps,
-                            getTableProps,
-                          }) => (
-                            <TableContainer>
-                              <Table {...getTableProps()}>
-                                <TableHead>
-                                  <TableRow>
-                                    <TableExpandHeader />
-                                    {headers.map(header => (
-                                      <TableHeader
-                                        {...getHeaderProps({ header })}>
-                                        {header.header}
-                                      </TableHeader>
+                    <h2 className="create-page__subheading">
+                      Orchestration Service
+                    </h2>
+                    <p className="create-page__helper-text">
+                      Information about your orchestration service.
+                    </p>
+
+                    <Tile>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                        alt="tbd"
+                      />
+                      <h3>Kubernetes</h3>
+                      <Dropdown {...props.dropdown} onChange={console.log()} />
+                    </Tile>
+
+                    <h2 className="create-page__subheading">Infrastructure</h2>
+                    <p className="create-page__helper-text">
+                      Choose your environment, this will affect the subsequent
+                      cluster configuration choices. Is location more important
+                      for you?
+                    </p>
+                    <TileGroup defaultSelected="default-selected" legend=" ">
+                      <RadioTile
+                        value="standard"
+                        id="tile-1"
+                        labelText="Classic Infrastructure">
+                        <h3>Classic Infrastructure</h3>
+                        <p>Info about classic infrastructure and what it is.</p>
+                      </RadioTile>
+                      <RadioTile
+                        value="standard"
+                        id="tile-1"
+                        labelText="VPC Infrastructure">
+                        <h3>VPC</h3>
+                        <p>Info about VPC and what it is.</p>
+                      </RadioTile>
+                    </TileGroup>
+
+                    <h2 className="create-page__subheading">Metadata</h2>
+                    <p className="create-page__helper-text">
+                      Information about your cluster.
+                    </p>
+                    <TextInput
+                      type="text"
+                      {...props.clusterNameTextInput}
+                      className="create-page__input"
+                    />
+                    <Dropdown
+                      {...props.resourcegroupDropdown}
+                      items={'Default'}
+                      onChange={console.log()}
+                      className="create-page__input"
+                    />
+                    <TextInput type="text" {...props.tagsTextInput} />
+
+                    <h2 className="create-page__subheading">Location</h2>
+                    <p className="create-page__helper-text">
+                      Choose your location, this will affect the subsequent
+                      cluster configuration choices.
+                    </p>
+
+                    <h2 className="create-page__subheading">Workers</h2>
+                    <p className="create-page__helper-text">
+                      Choose your workers, this will not affect the subsequent
+                      cluster configuration choices.
+                    </p>
+
+                    <h2 className="create-page__subheading">Addons</h2>
+                    <p className="create-page__helper-text">
+                      Choose your addons, this will not affect the subsequent
+                      cluster configuration choices.
+                    </p>
+                    <DataTable
+                      className="create-page__addons-table"
+                      rows={rows}
+                      headers={headers}
+                      render={({
+                        rows,
+                        headers,
+                        getHeaderProps,
+                        getRowProps,
+                        getTableProps,
+                      }) => (
+                        <TableContainer>
+                          <Table {...getTableProps()}>
+                            <TableHead>
+                              <TableRow>
+                                <TableExpandHeader />
+                                {headers.map(header => (
+                                  <TableHeader {...getHeaderProps({ header })}>
+                                    {header.header}
+                                  </TableHeader>
+                                ))}
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {rows.map(row => (
+                                <React.Fragment key={row.id}>
+                                  <TableExpandRow {...getRowProps({ row })}>
+                                    {row.cells.map(cell => (
+                                      <TableCell key={cell.id}>
+                                        {cell.value}
+                                      </TableCell>
                                     ))}
-                                  </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                  {rows.map(row => (
-                                    <React.Fragment key={row.id}>
-                                      <TableExpandRow {...getRowProps({ row })}>
-                                        {row.cells.map(cell => (
-                                          <TableCell key={cell.id}>
-                                            {cell.value}
-                                          </TableCell>
-                                        ))}
-                                      </TableExpandRow>
-                                      <TableExpandedRow
-                                        colSpan={headers.length + 1}>
-                                        <p>Row description</p>
-                                      </TableExpandedRow>
-                                    </React.Fragment>
-                                  ))}
-                                </TableBody>
-                              </Table>
-                            </TableContainer>
-                          )}
-                        />
+                                  </TableExpandRow>
+                                  <TableExpandedRow
+                                    colSpan={headers.length + 1}>
+                                    <p>Row description</p>
+                                  </TableExpandedRow>
+                                </React.Fragment>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      )}
+                    />
+                    <h2 className="create-page__subheading">Integrations</h2>
+                    <p className="create-page__helper-text">
+                      Choose your integrations, this will not affect the
+                      subsequent cluster configuration choices.
+                    </p>
+                    <div
+                      role="group"
+                      aria-label="selectable tiles"
+                      className="bx--row">
+                      <div className="bx--col-lg-4">
+                        <SelectableTile id="tile-1" name="tiles">
+                          <img
+                            src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                            alt="tbd"
+                          />
+                          <h3>SysDig</h3>
+                          <p>Third Party</p>
+                          <p>
+                            Some explanation about Sysdig and logging and
+                            monitoring things. Keep it short and sweet.
+                          </p>
+                          <p>Integration</p>
+                        </SelectableTile>
                       </div>
-                    </div>
-                    <div className="bx--row create-page__section create-page__integrations">
-                      <div className="bx--col-lg-16">
-                        <h2 className="create-page__subheading">
-                          Integrations
-                        </h2>
-                        <p className="create-page__helper-text">
-                          Choose your integrations, this will not affect the
-                          subsequent cluster configuration choices.
-                        </p>
-                        <div
-                          role="group"
-                          aria-label="selectable tiles"
-                          className="bx--row">
-                          <div className="bx--col-lg-4">
-                            <SelectableTile id="tile-1" name="tiles">
-                              <img
-                                src={`${process.env.PUBLIC_URL}/kubernetes.png`}
-                                alt="tbd"
-                              />
-                              <h3>SysDig</h3>
-                              <p>Third Party</p>
-                              <p>
-                                Some explanation about Sysdig and logging and
-                                monitoring things. Keep it short and sweet.
-                              </p>
-                              <p>Integration</p>
-                            </SelectableTile>
-                          </div>
-                          <div className="bx--col-lg-4">
-                            <SelectableTile id="tile-1" name="tiles">
-                              <img
-                                src={`${process.env.PUBLIC_URL}/kubernetes.png`}
-                                alt="tbd"
-                              />
-                              <h3>LogDNA</h3>
-                              <p>Third Party</p>
-                              <p>
-                                Some explanation about Sysdig and logging and
-                                monitoring things. Keep it short and sweet.
-                              </p>
-                              <p>Integration</p>
-                            </SelectableTile>
-                          </div>
-                        </div>
+                      <div className="bx--col-lg-4">
+                        <SelectableTile id="tile-1" name="tiles">
+                          <img
+                            src={`${process.env.PUBLIC_URL}/kubernetes.png`}
+                            alt="tbd"
+                          />
+                          <h3>LogDNA</h3>
+                          <p>Third Party</p>
+                          <p>
+                            Some explanation about Sysdig and logging and
+                            monitoring things. Keep it short and sweet.
+                          </p>
+                          <p>Integration</p>
+                        </SelectableTile>
                       </div>
                     </div>
                   </div>
