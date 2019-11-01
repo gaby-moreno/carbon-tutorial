@@ -1,6 +1,24 @@
 @import './mixins.scss';
 @import './overrides.scss';
 
+.container {
+  // background-color: orange;
+  display: grid;
+  grid-template-columns: 1fr 352px;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+}
+.main {
+  // background-color: gray;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  grid-template-columns: 60px 1fr;
+}
+.aside {
+  background-color: $ui-05;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
 .create-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-05 * 4;
@@ -40,40 +58,69 @@
   padding-bottom: $layout-03;
 }
 
-.create-page__section {
-  margin-bottom: $layout-05;
-}
-
 .create-page__subheading {
-  display: block;
   @include carbon--type-style('productive-heading-03');
+  margin-top: $layout-05;
 }
 
 .create-page__helper-text {
   @include carbon--type-style('label-01');
   margin-top: $spacing-02;
-  margin-bottom: $spacing-06;
   width: 50%;
 }
 
-.create-page__section .create-page__input {
-  margin-bottom: $spacing-06;
+.create-page__input {
+  margin-top: $spacing-06;
 }
 
-.create-page__tile-icon {
-  height: 24px;
-  position: relative;
-  top: 0;
-  left: 0;
+.dropdown-tile {
+  border-bottom: 1px solid darkgray;
+  height: 88px;
 }
-.create-page__tile-heading {
+
+.dropdown-tile__icon {
+  width: 24px;
   position: absolute;
   top: $spacing-05;
-  left: $spacing-09;
+  left: $spacing-05;
+}
+
+.dropdown-tile__heading {
+  @include carbon--type-style('productive-heading-01');
+  position: absolute;
+  top: $spacing-05;
+  left: $spacing-05 * 3;
+}
+
+.dropdown-tile__dropdown {
+  position: absolute;
+  bottom: 0;
+  left: $spacing-03;
+}
+
+.text-tile__heading {
   @include carbon--type-style('productive-heading-01');
 }
 
-.create-page__tile-dropdown-inline {
-  position: relative;
-  bottom: -$spacing-05;
+.text-tile__p {
+  @include carbon--type-style('body-short-01');
+}
+
+.content-tile__icon {
+  width: 14px;
+}
+
+.content-tile__heading {
+  @include carbon--type-style('productive-heading-01');
+}
+
+.content-tile__metadata {
+  @include carbon--type-style('caption-01');
+  color: $text-02;
+}
+
+.content-tile__description {
+  @include carbon--type-style('caption-01');
+  margin-top: $spacing-06;
+  margin-bottom: $spacing-06;
 }
